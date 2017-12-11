@@ -3,9 +3,10 @@ from .models import Stream, StreamUser, StreamTrack
 import json
 
 class StreamUserSerializer(serializers.ModelSerializer):
-
-	class Meta:
-		model = StreamUser
+    """Serializer to map the Model instance into JSON format."""
+    class Meta:
+        """Meta class to map serializer's fields with the model fields."""
+        model = StreamUser
         fields = ('name', 'screen_name', 'location')
 
 class StreamSerializer(serializers.ModelSerializer):
@@ -20,7 +21,8 @@ class StreamSerializer(serializers.ModelSerializer):
 		)
 
 class StreamTrackSerializer(serializers.ModelSerializer):
-
+    """Serializer to map the Model instance into JSON format."""
     class Meta:
+        """Meta class to map serializer's fields with the model fields."""
         model = StreamTrack
         fields = ('id', 'label')

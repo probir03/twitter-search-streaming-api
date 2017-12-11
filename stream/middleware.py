@@ -4,6 +4,9 @@ from rest_framework.decorators import api_view
 from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
 
+'''
+Exception Middleware class
+'''
 class ExceptionMiddleware:
 
     def __init__(self, get_response):
@@ -21,6 +24,6 @@ class ExceptionMiddleware:
 
         return response
 
-    # Check if user is authenticated or not
+    # Check if Exception occurs and return response
     def process_exception(self, request, exception):
         return JsonResponse({'error_message':"Something Went Wrong",  'status':500})
