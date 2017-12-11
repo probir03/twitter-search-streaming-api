@@ -25,9 +25,10 @@ def get_doc(request):
 		'make migration' : 'pyhton manage.py makemigrations',
 		'run migration' : 'pyhton manage.py migrate'
 	}
-	doc['stream track add'] = {
-		'add track' : '/stream/tracks',
-		'edit delete or update track' : '/stream/tracks/<id>'
+	doc['stream track API'] = {
+		'description' : 'This will add track and start fecthing data based on the track and store in database',
+		'add track' : '/twitter/stream/tracks',
+		'edit delete or update track' : '/twitter/stream/tracks/<id>'
 	}
 	doc['search_from_streamed_data'] = {
 		'description' : 'first you have to add tracks then only results will come, This API will search from database which is store using twitter streaming api',
@@ -41,29 +42,29 @@ def get_doc(request):
   			'twitter/stream?text__icontains=car&quote_count__gt=10&sort=id.asc,text.desc'
   		],
   		'examples' : [
-  			'twitter/stream?text__icontains=car&quote_count__gt=10',
-  			'twitter/stream?text__contains=car',
-  			'twitter/stream?quote_count__gt=10',
-  			'twitter/stream?reply_count__lt=100',
+  			'/twitter/stream?text__icontains=car&quote_count__gt=10',
+  			'/twitter/stream?text__contains=car',
+  			'/twitter/stream?quote_count__gt=10',
+  			'/twitter/stream?reply_count__lt=100',
   		]
 	}
 	doc['twitter_search'] = {
-		'description' : 'This API will search from the twitter using twitter search API',
-		'twitter stream search' : 'twitter/search',
+		'description' : 'This API will search from the twitter using twitter search API, atleast one query have to pass to get result',
+		'twitter stream search' : '/twitter/search?q=car',
 		'params' : ['q', 'lang', 'locale', 'since_id', 'geocode',
 			'max_id', 'since', 'until', 'result_type','count', 'include_entities', 'from',
 	        'to', 'source'],
 	    'examples' : [
-	    	'twitter/search?q=car&from=narendramodi',
-  			'twitter/search?q=car&lang=en',
+	    	'/twitter/search?q=car&from=narendramodi',
+  			'/twitter/search?q=car&lang=en',
 	    ]
 	}
 	doc['export'] = {
 		'description' : 'for now only csv export supported',
-		'use' : 'add quer paramet to the search url as export=csv',
+		'use' : 'add query paramet to the search url as export=csv',
 		'example' : [
-			'twitter/search?q=car&from=narendramodi&export=csv',
-  			'twitter/stream?text__icontains=car&quote_count__gt=10&export=csv'
+			'/twitter/search?q=car&from=narendramodi&export=csv',
+  			'/twitter/stream?text__icontains=car&quote_count__gt=10&export=csv'
 		]
 	}
 

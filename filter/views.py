@@ -114,16 +114,18 @@ class FilterStreamView(generics.ListAPIView):
 
     def get_queryset(self):
     	if hasattr(self, 'filter_data'):
-    		self.queryset = models.Stream.objects.filter(**self.filter_data)
+    		return models.Stream.objects.filter(**self.filter_data).all()
     	if hasattr(self, 'sort_data'):
     		self.queryset = self.queryset.order_by(*self.sort_data)
     	return self.queryset.all()
     
- 	"""
+    """
 	 query_params = [text, source, truncated, quote_count, reply_count, retweet_count, favorite_count, favorited,
   	retweeted, hashtags, media, symbols, urls, user_mentions, extended_entities, created_at]
   	"""
     def get(self, request, *args, **kwargs):
+    	if len(request.query_params) <= 0:
+    		return super(FilterStreamView, self).get(request, *args, **kwargs)
     	if len(request.query_params) > 0:
     		self.filter_data = {}
     		self.sort_data = []

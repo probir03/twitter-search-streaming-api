@@ -5,7 +5,7 @@
  	```
  Create new app in twitter and get the credential
  	- url : https://apps.twitter.com/
- 	
+
  Add env data 
  	- TWITTER_API_KEY = 'Twitter Consumer Kye'
  	- TWITTER_SECRET_KEY = 'Twitter Consumer Secret'
